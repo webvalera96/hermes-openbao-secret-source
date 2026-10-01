@@ -8,6 +8,8 @@ schema: spec-driven
 #   context: |
 #     Designs and tasks must cover Windows, macOS, and Linux
 #     Write all artifacts in Spanish
+context: |
+  Write all artifacts in English
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.
@@ -18,7 +20,9 @@ schema: spec-driven
 #       - Always state what is out of scope
 #     tasks:
 #       - Break tasks into chunks of max 2 hours
-
+rules:
+  tasks:
+    - Break tasks into chunks of max 2 hours
 # Per-operation guidance (optional)
 # Add advisory guidance for how apply and archive work should be conducted.
 # This is separate from artifact rules above.

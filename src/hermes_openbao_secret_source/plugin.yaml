@@ -1,0 +1,6 @@
+name: openbao
+version: 0.1.0
+description: "Resolve Hermes environment variables from an OpenBao KV v2 mount."
+author: OpenBao Secret Source contributors
+python_dependencies:
+  - "hvac>=2.0,<3"

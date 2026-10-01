@@ -1,0 +1,40 @@
+[project]
+name = "hermes-openbao-secret-source"
+version = "0.1.0"
+description = "Hermes Agent secret-source plugin that resolves mapped environment variables from an OpenBao KV v2 mount."
+readme = "README.md"
+requires-python = ">=3.11,<3.15"
+license = "MIT"
+authors = [{ name = "OpenBao Secret Source contributors" }]
+keywords = ["hermes", "openbao", "vault", "secrets", "plugin"]
+dependencies = [
+    "hvac>=2.0,<3",
+]
+
+[project.entry-points."hermes_agent.plugins"]
+openbao = "hermes_openbao_secret_source:register"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pyyaml>=6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hermes_openbao_secret_source"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/pyproject.toml",
+    "/README.md",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
