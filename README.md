@@ -78,10 +78,27 @@ module at `~/.hermes/plugins/openbao/__init__.py`.
 
 ### Verify the installation
 
+Confirm the files landed where Hermes discovers plugins:
+
 ```bash
 cat ~/.hermes/plugins/openbao/plugin.yaml
 uv run python -c "import hermes_openbao_secret_source; print(hermes_openbao_secret_source.__version__)"
 ```
+
+`make verify` performs the same file check and, when `$(HERMES_HOME)/config.yaml` exists, also
+confirms both activation gates:
+
+```bash
+make verify                        # checks ~/.hermes/config.yaml
+make verify HERMES_HOME=/opt/hermes
+```
+
+- `openbao` must be listed under `plugins.enabled` in `config.yaml` (Hermes plugins are opt-in).
+- `secrets.openbao.enabled` must be `true`.
+
+The target exits non-zero with a diagnostic naming the failing gate when either check fails. When
+`config.yaml` does not exist yet, it reports the plugin as installed but not yet configured and exits
+zero, so it can run before Hermes has been configured.
 
 The plugin declares a single runtime dependency, `hvac>=2.0,<3`.
 
